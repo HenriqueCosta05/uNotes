@@ -1,4 +1,4 @@
-export default function ButtonTheme() {
+export default function BootstrapCustomTheme() {
   return (
     <style type="text/css">
           {`
@@ -24,6 +24,20 @@ export default function ButtonTheme() {
       border: 1px solid rgb(107 33 168);
     }
     
+    .card {
+      background-color: rgb(255, 250, 255);
+      color: rgb(46 16 101);
+      border-radius: 1rem;
+      border: 1px solid rgb(46 16 101);
+      width: 25rem;
+
+      @media (max-width: 767px) {
+        .card {
+          display: flex;
+          width: 90rem;
+          margin: auto;
+        }
+    }
     /* Other styles */
     `}
       </style>

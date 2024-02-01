@@ -1,5 +1,5 @@
 import './index.css'
-import Home from './pages/home/Home'
+import Home from './ui/pages/home/Home'
 
 export default function App() {
   return (
