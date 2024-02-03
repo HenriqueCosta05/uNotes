@@ -1,7 +1,7 @@
 import Banner from '../../components/homepage/banner/Banner'
 import Features from '../../components/homepage/features/Features'
 import Header from '../../components/homepage/header/Header'
-
+import Pricing from '../../components/homepage/pricing/Pricing'
 export default function Home() {
   return (
     <>
@@ -16,6 +16,7 @@ export default function Home() {
         <Features cardTitle='Collaborate with others' cardDescription='In uNotes, users can collaborate with others by sharing notes and notebooks, making it easier to work together and share ideas, whether you are in the same room or on the other side of the world.' imgUrl='/assets/demo.jpg' buttonText='Check it out!'/>
         <Features cardTitle='Stay productive' cardDescription='uNotes offers a variety of features to help users stay productive, including the ability to set reminders, create to-do lists, and set goals, making it easier to stay focused and achieve more.' imgUrl='/assets/demo.jpg' buttonText='Check it out!'/>
       </div>
+      <Pricing/>
     </>
   )
 }
