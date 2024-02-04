@@ -1,0 +1,125 @@
+{
+    "homepageinfo": [
+        {
+            "header": [
+                {
+                    "id": 1,
+                    "name": "uNotes",
+                    "type": "title"
+                },
+                {
+                    "id": 2,
+                    "name": "about us",
+                    "type": "section"
+                },
+                {
+                    "id": 3,
+                    "name": "features",
+                    "type": "section"
+                },
+                {
+                    "id": 4,
+                    "name": "pricing",
+                    "type": "section"
+                },
+                {
+                    "id": 5,
+                    "name": "login",
+                    "type": "link"
+                }
+            ],
+            "banner": [
+                {
+                    "id": 1,
+                    "name": "Seize Ideas, Streamline Productivity: Your Notes, Anywhere, Anytime.",
+                    "type": "heading"
+                },
+                {
+                    "id": 2,
+                    "name": "uNotes is a note-taking app that helps you capture and prioritize ideas, projects, and to-do lists, so nothing falls through the cracks.",
+                    "type": "description"
+                },
+                {
+                    "id": 3,
+                    "name": "start a free-trial for 15 days!",
+                    "type": "button text"
+                }
+            ],
+            "features": [
+                {
+                    "id": 1,
+                    "title": "Filter by topic",
+                    "description": "In uNotes, users can effortlessly compose and organize their thoughts by creating notes and seamlessly filtering them based on specific topics, offering a intuitive note-taking experience."
+                },
+                {
+                    "id": 2,
+                    "title": "Customize your notes",
+                    "description": "uNotes allows users to customize their notes by adding images, links, and lists, making it easier to express their thoughts and ideas in a more personalized and creative way."
+                },
+                {
+                    "id": 3,
+                    "title": "Access your notes anywhere",
+                    "description": "With uNotes, users can access their notes from any device, anywhere, anytime. Whether you are at home, in the office, or on the go, uNotes makes it easy to stay organized and productive."
+                },
+                {
+                    "id": 4,
+                    "title": "Collaborate with others",
+                    "description": "In uNotes, users can collaborate with others by sharing notes and notebooks, making it easier to work together and share ideas, whether you are in the same room or on the other side of the world."
+                },
+                {
+                    "id": 5,
+                    "title": "Stay organized",
+                    "description": "uNotes offers a variety of features to help users stay organized, including the ability to create notebooks, add tags, and search for notes, making it easier to find and manage notes."
+                },
+                {
+                    "id": 6,
+                    "title": "Stay productive",
+                    "description": "uNotes offers a variety of features to help users stay productive, including the ability to set reminders, create to-do lists, and prioritize notes, making it easier to stay on top of tasks and projects."
+                }
+            ],
+            "pricing": [
+                {
+                    "id": 1,
+                    "name": "Free",
+                    "price": "U$ 0,00",
+                    "description": "For individuals who want to capture and organize their ideas, projects, and to-do lists.",
+                    "features": [
+                        "50 free notes",
+                        "3 notebooks",
+                        "Access from any device",
+                        "Basic search",
+                        "Basic customization"
+                    ]
+                },
+                {
+                    "id": 2,
+                    "name": "Premium",
+                    "price": "U$ 5,90 / month",
+                    "description": "For individuals who want to collaborate with others and stay organized and productive.",
+                    "features": [
+                        "Unlimited notes",
+                        "Unlimited notebooks",
+                        "All free features",
+                        "Collaboration",
+                        "Advanced search",
+                        "Advanced customization",
+                        "Reminders and to-do lists"
+                    ]
+                },
+                {
+                    "id": 3,
+                    "name": "Business",
+                    "price": "U$ 9,90 / month",
+                    "description": "For teams who want to work together and stay organized and productive.",
+                    "features": [
+                        "All premium features",
+                        "Team collaboration",
+                        "Admin controls",
+                        "Priority support",
+                        "Custom branding"
+                    ]
+                }
+            ]
+        }
+    ]
+}
