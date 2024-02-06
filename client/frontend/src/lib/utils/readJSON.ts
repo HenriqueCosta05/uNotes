@@ -1,6 +1,6 @@
 const readJSON = async (): Promise<any> => {
     try {
-        const response = await fetch('./db.json');
+        const response = await fetch('../../db.json');
         if (!response.ok) {
             throw new Error('HTTP error ' + response.status);
         }

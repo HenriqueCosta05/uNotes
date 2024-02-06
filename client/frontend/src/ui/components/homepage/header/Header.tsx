@@ -24,7 +24,7 @@ export default function Header({logo, navlink1, navlink2, navlink3, buttontext}:
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className='me-auto' role="navigation">
             <Nav className="m-auto">
-              <Nav.Link href="/#about" className='nav-link'><p className="font-bold text-purple-800 text-2xl mr-10 mt-3">{navlink1}</p></Nav.Link>
+              <Nav.Link href="/#about-us" className='nav-link'><p className="font-bold text-purple-800 text-2xl mr-10 mt-3">{navlink1}</p></Nav.Link>
               <Nav.Link href="/#features" className='nav-link'><p className="font-bold text-purple-800 text-2xl mr-10 mt-3">{navlink2}</p></Nav.Link>
               <Nav.Link href="/#pricing" className='nav-link'><p className="font-bold text-purple-800 text-2xl mr-10 mt-3">{navlink3}</p></Nav.Link>
               <Nav.Link href="/login" className='nav-link'>

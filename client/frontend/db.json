@@ -43,38 +43,62 @@
                     "id": 3,
                     "name": "start a free-trial for 15 days!",
                     "type": "button text"
+                },
+                {
+                    "id": 4,
+                    "name": "https://elizabethbutlermd.com/wp-content/uploads/2023/03/2_image.png",
+                    "type": "image url"
                 }
             ],
             "features": [
                 {
                     "id": 1,
                     "title": "Filter by topic",
-                    "description": "In uNotes, users can effortlessly compose and organize their thoughts by creating notes and seamlessly filtering them based on specific topics, offering a intuitive note-taking experience."
+                    "description": "In uNotes, users can effortlessly compose and organize their thoughts by creating notes and seamlessly filtering them based on specific topics, offering a intuitive note-taking experience.",
+                    "imgUrl": "https://elizabethbutlermd.com/wp-content/uploads/2023/03/3_image.png",
+                    "buttonText": "learn more"
                 },
                 {
                     "id": 2,
                     "title": "Customize your notes",
-                    "description": "uNotes allows users to customize their notes by adding images, links, and lists, making it easier to express their thoughts and ideas in a more personalized and creative way."
+                    "description": "uNotes allows users to customize their notes by adding images, links, and lists, making it easier to express their thoughts and ideas in a more personalized and creative way.",
+                    "imgUrl": "https://elizabethbutlermd.com/wp-content/uploads/2023/03/3_image.png",
+                    "buttonText": "learn more"
                 },
                 {
                     "id": 3,
                     "title": "Access your notes anywhere",
-                    "description": "With uNotes, users can access their notes from any device, anywhere, anytime. Whether you are at home, in the office, or on the go, uNotes makes it easy to stay organized and productive."
+                    "description": "With uNotes, users can access their notes from any device, anywhere, anytime. Whether you are at home, in the office, or on the go, uNotes makes it easy to stay organized and productive.",
+                    "imgUrl": "https://elizabethbutlermd.com/wp-content/uploads/2023/03/3_image.png",
+                    "buttonText": "learn more"
+                
                 },
                 {
                     "id": 4,
                     "title": "Collaborate with others",
-                    "description": "In uNotes, users can collaborate with others by sharing notes and notebooks, making it easier to work together and share ideas, whether you are in the same room or on the other side of the world."
+                    "description": "In uNotes, users can collaborate with others by sharing notes and notebooks, making it easier to work together and share ideas, whether you are in the same room or on the other side of the world.",
+                    "imgUrl": "https://elizabethbutlermd.com/wp-content/uploads/2023/03/3_image.png",
+                    "buttonText": "learn more"
                 },
                 {
                     "id": 5,
                     "title": "Stay organized",
-                    "description": "uNotes offers a variety of features to help users stay organized, including the ability to create notebooks, add tags, and search for notes, making it easier to find and manage notes."
+                    "description": "uNotes offers a variety of features to help users stay organized, including the ability to create notebooks, add tags, and search for notes, making it easier to find and manage notes.",
+                    "imgUrl": "https://elizabethbutlermd.com/wp-content/uploads/2023/03/3_image.png",
+                    "buttonText": "learn more"
+
                 },
                 {
                     "id": 6,
                     "title": "Stay productive",
-                    "description": "uNotes offers a variety of features to help users stay productive, including the ability to set reminders, create to-do lists, and prioritize notes, making it easier to stay on top of tasks and projects."
+                    "description": "uNotes offers a variety of features to help users stay productive, including the ability to set reminders, create to-do lists, and prioritize notes, making it easier to stay on top of tasks.",
+                    "imgUrl": "https://elizabethbutlermd.com/wp-content/uploads/2023/03/3_image.png",
+                    "buttonText": "learn more"
+                },
+                {
+                    "id": 7,
+                    "header": "Features",
+                    "description": "uNotes offers a variety of features to help users capture, organize, and prioritize their ideas, projects, and to-do lists, so they can stay organized and productive, whether they are at home, in the office, or on the go."
                 }
             ],
             "pricing": [
@@ -89,7 +113,8 @@
                         "Access from any device",
                         "Basic search",
                         "Basic customization"
-                    ]
+                    ],
+                    "buttonText": "Start free trial!"
                 },
                 {
                     "id": 2,
@@ -104,7 +129,8 @@
                         "Advanced search",
                         "Advanced customization",
                         "Reminders and to-do lists"
-                    ]
+                    ],
+                    "buttonText": "Start free trial!"
                 },
                 {
                     "id": 3,
@@ -117,7 +143,21 @@
                         "Admin controls",
                         "Priority support",
                         "Custom branding"
-                    ]
+                    ],
+                    "buttonText": "Start free trial!"
+                },
+                 {
+                 "id": 4,
+                 "heading": "Choose the plan that's right for you",
+                 "description": "uNotes offers a variety of plans to meet the needs of individuals and teams, including a free plan, a premium plan, and a business plan."
+                }
+            ],
+            "footer": [
+                
+                {
+                    "id": 1,
+                    "name": "Henrique Benedicto Costa. All rights reserved.",
+                    "type": "description"
                 }
             ]
         }
