@@ -28,6 +28,10 @@ public class User {
     @Column(name="username")
     private String username;
 
+    @JsonProperty(value="name")
+    @Column(name="name")
+    private String name;
+    
     @JsonProperty(value="Email")
     @Column(name="email")
     private String email;

@@ -161,5 +161,66 @@
                 }
             ]
         }
-    ]
+    ],
+    "authpageinfo": 
+        {
+            "login": [
+                {
+                    "id": 1,
+                    "name": "Welcome back!",
+                    "type": "heading"
+                },
+                {
+                    "id": 2,
+                    "name": "Log in to your account to access your notes, notebooks, and more.",
+                    "type": "description"
+                },
+                {
+                    "id": 3,
+                    "name": "email",
+                    "type": "input"
+                },
+                {
+                    "id": 4,
+                    "name": "password",
+                    "type": "input"
+                },
+                {
+                    "id": 5,
+                    "name": "login",
+                    "type": "button text"
+                },
+                {
+                    "id": 6,
+                    "name": "forgot your password?",
+                    "type": "link"
+                }
+            ],
+            "register": [
+                {
+                    "id": 1,
+                    "name": "Create an account",
+                    "type": "heading"
+                },
+                {
+                    "id": 2,
+                    "name": "Sign up for uNotes to capture and organize your ideas, projects, and to-do lists.",
+                    "type": "description"
+                },
+                {
+                    "id": 3,
+                    "name": "Registration Rules",
+                    "type": "rules",
+                    "rules": [
+                        "The email must be valid",
+                        "The password must have at least 8 characters",
+                        "The password must have at least 1 uppercase letter",
+                        "The password must have at least 1 lowercase letter",
+                        "The password must have at least 1 number",
+                        "The password must have at least 1 special character"
+                    ]
+                }
+            ]
+        }
+
 }
