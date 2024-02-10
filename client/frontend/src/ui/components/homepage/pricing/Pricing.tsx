@@ -13,8 +13,8 @@ export default function Pricing({cardTitle, cardDescription, cardPrice, features
     <section id="pricing">
       <Card className="sm:w-9/10 mb-12 lg:w-72 rounded-2 mt-28 mx-2" style={{ backgroundColor: "rgb(233 213 255)" }}>
         <Card.Body style={{ color: "rgb(46 16 101)", borderRadius:"15px", display:"flex", flexDirection: "column", }}>
-          <Card.Title style={{fontSize: "36px"}} className="m-auto">{cardTitle}</Card.Title>
-          <Card.Subtitle>{cardPrice}</Card.Subtitle>
+          <Card.Title style={{fontSize: "36px", fontWeight: "900"}} className="m-auto">{cardTitle}</Card.Title>
+          <Card.Subtitle style={{fontSize: "24px", textAlign: "center"}}>{cardPrice}</Card.Subtitle>
           <Card.Text>
             {cardDescription}
             {features && features.map((feature, index) => {
