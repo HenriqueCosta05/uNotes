@@ -7,7 +7,8 @@ import Auth from './ui/pages/auth/Auth.tsx';
 
 const router = createBrowserRouter([
   { path: '/', element: <App /> },
-  { path: '/auth', element: <Auth /> },
+  { path: '/auth/login', element: <Auth isLoginPage={true} />},
+  { path: '/auth/register', element: <Auth isLoginPage={false} />}
 ]);
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

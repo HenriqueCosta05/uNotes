@@ -35,7 +35,7 @@ export default function Home() {
       {isPending && <Spinner animation='border' variant='primary' className='p-4 d-flex align-items-center mx-auto my-40'/>}
       
       {homepageinfo && headerData && (
-        <Header logo={headerData[0].name} navlink1={rename(headerData[1].name)} navlink2={rename(headerData[2].name)} navlink3={rename(headerData[3].name)}buttontext={rename(headerData[4].name)} buttonLink='/auth' />
+        <Header logo={headerData[0].name} navlink1={rename(headerData[1].name)} navlink2={rename(headerData[2].name)} navlink3={rename(headerData[3].name)}buttontext={rename(headerData[4].name)} buttonLink='/auth/login' />
       )}
       
       {homepageinfo && bannerData && (

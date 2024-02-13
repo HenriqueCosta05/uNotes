@@ -1,23 +1,36 @@
+import axios from 'axios';
 import React from 'react'
 import { Button, Form, FormControl, FormGroup, FormLabel } from 'react-bootstrap'
 import Feedback from 'react-bootstrap/esm/Feedback';
 import FormCheckInput from 'react-bootstrap/esm/FormCheckInput'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-
+import { useNavigate } from 'react-router-dom';
 interface FormFields {
   email: string;
   password: string;
 }
 
 export default function FormSignIn() {
+  const navigate = useNavigate();
   const { control, handleSubmit, formState: { errors, isSubmitting }, register} = useForm<FormFields>({
         defaultValues: {
           email: "",
           password: ""
         }
     })
-  const onSubmit: SubmitHandler<FormFields> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    try {
+      const response = await axios.get('http://localhost:8080/auth/login');
+      console.log(data);
+      if(response.status === 200){
+        navigate('/app/dashboard')
+      } else {
+        return (<Feedback type="invalid">Invalid email or password</Feedback>)
+      }
+    } catch (error) {
+      console.error(error);
+    }
+   
   }
   return (
     <>

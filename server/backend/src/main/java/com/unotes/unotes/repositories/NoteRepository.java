@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface NoteRepository extends UserRepository<User, Integer> {
+public interface NoteRepository {
     List<Note> listNotesByUser(User user);
     boolean findNoteById(Integer id);
     Note createNote(User user);

@@ -6,12 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/admin")
 @CrossOrigin("*")
-public class UserController {
+public class AdminController {
 
     @GetMapping
-    public String helloUserController(){
-        return "Users and admins have access to this page";
+    public String helloAdminController(){
+        return "Only Admins have access to this page";
     }
 }
+

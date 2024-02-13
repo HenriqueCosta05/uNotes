@@ -3,6 +3,8 @@ import FormCheckInput from 'react-bootstrap/esm/FormCheckInput'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 import Feedback from 'react-bootstrap/esm/Feedback'
 import InputMask from 'react-input-mask'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 interface FormFields {
     fullName: string;
@@ -14,6 +16,7 @@ interface FormFields {
 }
 
 export default function FormSignUp() {
+    const navigate = useNavigate();
     const { control, handleSubmit,  getValues, formState: { errors, isSubmitting }, register} = useForm<FormFields>({
         defaultValues: {
             fullName: "",
@@ -21,12 +24,22 @@ export default function FormSignUp() {
             email: "",
             phone: "",
             password: "",
-            confirmPassword: ""
         }
     })
-const onSubmit: SubmitHandler<FormFields> = (data) => {
-    console.log(data);
-}
+ const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    try {
+      const response = await axios.get('http://localhost:8080/auth/register');
+      console.log(data);
+      if(response.status === 200){
+        navigate('/app/dashboard')
+      } else {
+        return (<Feedback type="invalid">Invalid email or password</Feedback>)
+      }
+    } catch (error) {
+      console.error(error);
+    }
+   
+  }
     return (
         <>
             <Form className='w-11/12' onSubmit={handleSubmit(onSubmit)} noValidate>
