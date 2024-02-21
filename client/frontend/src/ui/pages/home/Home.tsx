@@ -5,8 +5,8 @@ import Header from '../../components/homepage/header/Header'
 import Pricing from '../../components/homepage/pricing/Pricing'
 import { Spinner } from 'react-bootstrap'
 import useFetch from '../../../services/hooks/useFetch/UseFetch'
-import readJSON from '../../../lib/utils/readJSON'
-import rename from '../../../lib/utils/rename'
+import readJSON from '../../../services/utils/readJSON'
+import rename from '../../../services/utils/rename'
 import Footer from '../../components/homepage/footer/Footer'
 
 export default function Home() {

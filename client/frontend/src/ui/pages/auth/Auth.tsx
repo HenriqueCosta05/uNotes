@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/homepage/header/Header';
 import useFetch from '../../../services/hooks/useFetch/UseFetch';
 import { Button, ButtonGroup, Spinner } from 'react-bootstrap';
-import readJSON from '../../../lib/utils/readJSON';
+import readJSON from '../../../services/utils/readJSON';
 import ExternalLoginButton from '../../components/auth/ExternalLoginButton';
 import FormSignIn from '../../components/auth/signin/signinform/FormSignIn';
 import FormSignUp from '../../components/auth/signup/signupform/FormSignUp';

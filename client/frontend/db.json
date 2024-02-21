@@ -221,6 +221,80 @@
                     ]
                 }
             ]
+        },
+        "appinfo": 
+        {
+            "header": [
+                {
+                    "id": 1,
+                    "name": "uNotes",
+                    "type": "title"
+                },
+                {
+                    "id": 2,
+                    "name": "notes",
+                    "type": "section"
+                },
+                {
+                    "id": 3,
+                    "name": "notebooks",
+                    "type": "section"
+                },
+                {
+                    "id": 4,
+                    "name": "tags",
+                    "type": "section"
+                },
+                {
+                    "id": 5,
+                    "name": "logout",
+                    "type": "link"
+                }
+            ],
+            "notes": [
+                {
+                    "id": 1,
+                    "name": "All notes",
+                    "type": "heading"
+                },
+                {
+                    "id": 2,
+                    "name": "Create a new note",
+                    "type": "button text"
+                },
+                {
+                    "id": 3,
+                    "name": "Search notes",
+                    "type": "input"
+                },
+                {
+                    "id": 4,
+                    "name": "Filter by topic",
+                    "type": "select",
+                    "options": [
+                        "All",
+                        "Work",
+                        "Personal",
+                        "Ideas",
+                        "Projects",
+                        "To-do lists"
+                    ]
+                },
+                {
+                    "id": 5,
+                    "name": "Sort by",
+                    "type": "select",
+                    "options": [
+                        "Newest",
+                        "Oldest",
+                        "Alphabetical"
+                    ]
+                },
+                {
+                    "id": 6,
+                    "name": "No notes found",
+                    "type": "description"
+                }
+            ]
         }
-
 }

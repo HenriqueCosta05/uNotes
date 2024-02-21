@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
-import getYear from '../../../../lib/utils/getYear';
+import getYear from '../../../../services/utils/getYear';
 
 interface FooterProps {
     footerText: string;
