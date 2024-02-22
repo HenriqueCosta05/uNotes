@@ -1,5 +1,7 @@
 package com.unotes.unotes.services;
 
+import com.unotes.unotes.models.User;
+import com.unotes.unotes.repositories.TokenRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -15,15 +17,25 @@ import java.util.function.Function;
 public class JwtService {
 
     private final String SECRET_KEY = "cf26d3604fc70f22ba70c3ea9072673c49c6e576e4f5a40359ab48cea7eeffb8";
+    private final TokenRepository tokenRepository;
 
+    public JwtService(TokenRepository tokenRepository) {
+        this.tokenRepository = tokenRepository;
+    }
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public boolean isValid(String token, UserDetails user){
+    public boolean isValid(String token, UserDetails user) {
         String username = extractUsername(token);
-        return (username.equals(user.getUsername())) && !isTokenExpired(token);
+
+        boolean validToken = tokenRepository
+                .findByToken(token)
+                .map(t -> !t.isLoggedOut())
+                .orElse(false);
+
+        return (username.equals(user.getUsername())) && !isTokenExpired(token) && validToken;
     }
 
     private boolean isTokenExpired(String token) {

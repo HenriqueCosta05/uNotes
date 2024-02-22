@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
@@ -14,6 +15,7 @@ import java.util.*;
 @Embeddable
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Table(name="user")
@@ -47,63 +49,11 @@ public class User implements UserDetails {
 
     @JsonProperty(value="Notes_created")
     @Column(name="notes_created")
-    private Integer notesCreated;
+    private Integer notesCreated = 0;
+    
 
-    @JsonProperty(value = "NotesList")
-    @JoinColumn(name= "user_id")
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Note> noteList = new ArrayList<>();
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name="user_role_junction",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name="role_id")}
-    )
-
-    private Set<Role> authorities;
-
-    public User() {
-        super();
-        this.authorities = new HashSet<Role>();
-    }
-
-    public User(String username, String name, String phoneNumber, String email, String password, int numofNotes, Set<Role> roles) {
-        this.username = username;
-        this.fullName = name;
-        this.phone = phoneNumber;
-        this.email = email;
-        this.password = password;
-        this.notesCreated = numofNotes;
-        this.authorities = roles;
-    }
-
-    public User(String username, String password, Set<Role> roles) {
-        this.username = username;
-        this.password = password;
-        this.authorities = roles;
-    }
-
-    public User(int userId, String username, String password, Set<Role> roles) {
-        this.id = userId;
-        this.username = username;
-        this.password = password;
-        this.authorities = roles;
-    }
-
-    public User(String fullName, String username, String email, String phone, String encodedPassword, Set<Role> authorities) {
-        this.fullName = fullName;
-        this.username = username;
-        this.email = email;
-        this.phone = phone;
-        this.password = encodedPassword;
-        this.authorities = authorities;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 
     @Override
     public boolean isAccountNonExpired() {
@@ -123,5 +73,10 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 }

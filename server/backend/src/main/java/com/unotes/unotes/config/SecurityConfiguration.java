@@ -1,21 +1,65 @@
 package com.unotes.unotes.config;
 
+import com.unotes.unotes.filter.JwtAuthenticationFilter;
+import com.unotes.unotes.services.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfiguration {
+
+    private final UserDetailsServiceImpl userDetailsServiceimpl;
+
+    private final JwtAuthenticationFilter jwtauthenticationFilter;
+
+    private final CustomAccessDeniedHandler accessDeniedHandler;
+
+    public SecurityConfiguration(UserDetailsServiceImpl userDetailsServiceimpl,
+                                 JwtAuthenticationFilter jwtauthenticationFilter,
+                                 CustomAccessDeniedHandler accessDeniedHandler) {
+        this.userDetailsServiceimpl = userDetailsServiceimpl;
+        this.jwtauthenticationFilter = jwtauthenticationFilter;
+        this.accessDeniedHandler = accessDeniedHandler;
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        return http
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(
+                        req -> req.requestMatchers("/auth/login/**", "/auth/register/**")
+                                .permitAll()
+                                .requestMatchers("/admin").hasAuthority("ADMIN")
+                                .anyRequest()
+                                .authenticated()
+                ).userDetailsService(userDetailsServiceimpl)
+                .exceptionHandling(e -> e.accessDeniedHandler(accessDeniedHandler)
+                        .authenticationEntryPoint((new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))))
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtauthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
+    }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -23,21 +67,8 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(UserDetailsService detailsService) {
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setUserDetailsService(detailsService);
-        return new ProviderManager(daoAuthenticationProvider);
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception{
+        return configuration.getAuthenticationManager();
     }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/auth/**").permitAll();
-                    auth.anyRequest().authenticated();
-                }).httpBasic(withDefaults());
-
-        return http.build();
-    }
 }

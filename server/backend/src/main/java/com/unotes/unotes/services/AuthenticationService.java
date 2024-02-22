@@ -1,40 +1,53 @@
 package com.unotes.unotes.services;
 
-import com.unotes.unotes.dtos.RegistrationDTO;
-import com.unotes.unotes.dtos.UserDTO;
-import com.unotes.unotes.models.Role;
+import com.unotes.unotes.models.AuthenticationResponse;
 import com.unotes.unotes.models.User;
-import com.unotes.unotes.repositories.RoleRepository;
 import com.unotes.unotes.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 @Service
-@Transactional
 public class AuthenticationService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository repository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    public AuthenticationService(UserRepository repository, PasswordEncoder passwordEncoder, JwtService jwtService, AuthenticationManager authenticationManager) {
+        this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
+    }
 
-    public User registerUser(String fullName, String username, String email, String phone, String password, Set<Role> authorities) {
+    public AuthenticationResponse register(User request) {
+        User user = new User();
+        user.setFullName(request.getFullName());
+        user.setUsername(request.getUsername());
+        user.setEmail(request.getEmail());
+        user.setPhone(request.getPhone());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setRole(user.getRole());
+        user = repository.save(user);
 
-        String encodedPassword = passwordEncoder.encode(password);
-        Role userRole = roleRepository.findByAuthority("USER").get();
+        String token = jwtService.generateToken(user);
+        return new AuthenticationResponse(token);
+    }
 
-        authorities.add(userRole);
+    public AuthenticationResponse authenticate(User request) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword()
+                )
+        );
+        User user = repository.findByUsername(request.getUsername()).orElseThrow();
+        String token = jwtService.generateToken(user);
 
-        return userRepository.save(new User(fullName, username, email, phone, encodedPassword, authorities));
+        return new AuthenticationResponse(token);
     }
 }
