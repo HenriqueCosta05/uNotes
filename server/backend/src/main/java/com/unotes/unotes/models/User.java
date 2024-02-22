@@ -47,10 +47,6 @@ public class User implements UserDetails {
     @Column(name="password")
     private String password;
 
-    @JsonProperty(value="Notes_created")
-    @Column(name="notes_created")
-    private Integer notesCreated = 0;
-    
 
     @Enumerated(value = EnumType.STRING)
     private Role role;

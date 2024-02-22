@@ -3,16 +3,17 @@ package com.unotes.unotes.controllers;
 import com.unotes.unotes.models.AuthenticationResponse;
 import com.unotes.unotes.models.User;
 import com.unotes.unotes.services.AuthenticationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(value = "**")
-
+@CrossOrigin("**")
 @RestController
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
+    @Autowired
     public AuthenticationController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
@@ -24,7 +25,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
-    @PostMapping("/auth/login")
+    @GetMapping("/auth/login")
     public ResponseEntity<AuthenticationResponse> login (
             @RequestBody User request
     ) {

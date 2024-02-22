@@ -32,7 +32,7 @@ export default function Auth({isLoginPage}: login) {
         }
 
         const registerTransaction = async () => {
-            const response = await axios.get("http://localhost:8080/auth/register");
+            const response = await axios.post("http://localhost:8080/auth/register");
             return response.data;
         }
         fetchData();

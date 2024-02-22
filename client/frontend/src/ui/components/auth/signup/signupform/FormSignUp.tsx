@@ -7,28 +7,30 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 interface FormFields {
-    fullName: string;
-    username: string;
-    email: string;
-    phone: string;
-    password: string;
+    name: string;
+    Username: string;
+    Email: string;
+    PhoneNumber: string;
+    Password: string;
     confirmPassword: string;
+    role: string;
 }
 
 export default function FormSignUp() {
     const navigate = useNavigate();
     const { control, handleSubmit,  getValues, formState: { errors, isSubmitting }, register} = useForm<FormFields>({
         defaultValues: {
-            fullName: "",
-            username: "",
-            email: "",
-            phone: "",
-            password: "",
+            name: "",
+            Username: "",
+            Email: "",
+            PhoneNumber: "",
+            Password: "",
+            role: "USER",
         }
     })
  const onSubmit: SubmitHandler<FormFields> = async (data) => {
     try {
-      const response = await axios.get('http://localhost:8080/auth/register');
+      const response = await axios.post('http://localhost:8080/auth/register');
       console.log(data);
       if(response.status === 200){
         navigate('/app/dashboard')
