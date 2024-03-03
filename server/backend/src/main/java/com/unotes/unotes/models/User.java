@@ -18,12 +18,12 @@ import java.util.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name="user")
+@Table(name="usuario")
 
 public class User implements UserDetails {
     @Id
     @JsonProperty(value = "Id")
-    @Column(name="id", columnDefinition = "serial")
+    @Column(name="user_id", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
