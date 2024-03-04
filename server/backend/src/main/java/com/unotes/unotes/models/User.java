@@ -49,7 +49,7 @@ public class User implements UserDetails {
 
 
     @Enumerated(value = EnumType.STRING)
-    private Role role;
+    private Role role = Role.USER;
 
     @Override
     public boolean isAccountNonExpired() {

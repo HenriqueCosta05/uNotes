@@ -1,6 +1,7 @@
 package com.unotes.unotes.services;
 
 import com.unotes.unotes.models.AuthenticationResponse;
+import com.unotes.unotes.models.Role;
 import com.unotes.unotes.models.User;
 import com.unotes.unotes.repositories.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,7 +32,7 @@ public class AuthenticationService {
         user.setEmail(request.getEmail());
         user.setPhone(request.getPhone());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(user.getRole());
+        user.setRole(Role.USER);
         user = repository.save(user);
 
         String token = jwtService.generateToken(user);
@@ -39,15 +40,18 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(User request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),
-                        request.getPassword()
-                )
-        );
-        User user = repository.findByUsername(request.getUsername()).orElseThrow();
+        User user = repository.findByUsername(request.getUsername())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Validate password
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Invalid password");
+        }
+
+        // Generate token
         String token = jwtService.generateToken(user);
 
         return new AuthenticationResponse(token);
     }
+
 }
