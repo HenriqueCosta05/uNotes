@@ -5,63 +5,77 @@ import Feedback from 'react-bootstrap/esm/Feedback';
 import FormCheckInput from 'react-bootstrap/esm/FormCheckInput'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
+import {request } from '../../../../../services/utils/getToken'
+import Swal from 'sweetalert2'
 interface FormFields {
-  email: string;
-  password: string;
+  Username: string;
+  Password: string;
 }
 
 export default function FormSignIn() {
   const navigate = useNavigate();
-  const { control, handleSubmit, formState: { errors, isSubmitting }, register} = useForm<FormFields>({
+  const { control, handleSubmit, formState: { errors, isSubmitting }, login} = useForm<FormFields>({
         defaultValues: {
-          email: "",
-          password: ""
+          Username: "",
+          Password: ""
         }
     })
-  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+const onSubmit: SubmitHandler<FormFields> = async (data) => {
     try {
-      const response = await axios.get('http://localhost:8080/auth/login');
-      console.log(data);
-      if(response.status === 200){
-        navigate('/app/dashboard')
-      } else {
-        return (<Feedback type="invalid">Invalid email or password</Feedback>)
-      }
+        const response = await request('post', '/auth/login', data);
+        console.log(response.data);
+        if (response.status === 200) {
+            return (
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'User logged in successfully!',
+                    icon: 'success',
+                    confirmButtonText: 'Go to homepage',
+                    didClose: () => {
+                        navigate('/app/home');
+                    }
+                })
+            )
+        }
     } catch (error) {
-      console.error(error);
+        Swal.fire({
+                    title: 'Try again!',
+                    text: 'Username or password incorrect!',
+                    icon: 'error',
+                    confirmButtonText: 'Try again',
+                })
+        console.error(error);
     }
-   
-  }
+}
   return (
     <>
       <Form className='w-11/12' onSubmit={handleSubmit(onSubmit)} noValidate>
         <FormGroup className="mt-3">
-          <FormLabel className='mt-3'>E-mail Address: </FormLabel>
+          <FormLabel className='mt-3'>Username: </FormLabel>
           <Controller
-            name='email'
+            name='Username'
             control={control}
             rules={{
-              required: "Please enter your email.",
-              pattern: {
-                value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                message: "Please enter a valid email address."
-              },
+              required: "Please enter your username.", pattern: {
+                                value: /^[a-zA-Z0-9]+$/,
+                                message: "Username must contain only letters and numbers."
+                            }
             }}
             render={({ field }) => (
               <FormControl
                 {...field}
-                isInvalid={errors.email}
+                isInvalid={errors.Username}
                 type="email"
-                placeholder="Enter email" />
+                placeholder="Enter username" />
             )}
           />
-          {errors.email && (
-            <Feedback type="invalid">{errors.email.message}</Feedback>
+          {errors.Username && (
+            <Feedback type="invalid">{errors.Username.message}</Feedback>
           )}
 
           <FormLabel className='mt-3'>Password: </FormLabel>
           <Controller
-            name='password'
+            name='Password'
             control={control}
             rules={{
               required: "Please enter your password.",
@@ -73,13 +87,13 @@ export default function FormSignIn() {
             render={({ field }) => (
               <FormControl
                 {...field}
-                isInvalid={errors.password}
+                isInvalid={errors.Password}
                 type="password"
                 placeholder="Enter password" />
             )}
           />
-          {errors.password && (
-            <Feedback type="invalid">{errors.password.message}</Feedback>
+          {errors.Password && (
+            <Feedback type="invalid">{errors.Password.message}</Feedback>
           )}
           <div className="flex flex-nowrap h-auto mt-2 justify-start items-center">
             <FormCheckInput type="checkbox" />
