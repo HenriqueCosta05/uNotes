@@ -3,9 +3,9 @@ import FormCheckInput from 'react-bootstrap/esm/FormCheckInput'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 import Feedback from 'react-bootstrap/esm/Feedback'
 import InputMask from 'react-input-mask'
-import axios from 'axios'
+import { getAuthToken, request } from '../../../../../services/utils/getToken'
 import { useNavigate } from 'react-router-dom'
-
+import Swal from 'sweetalert2'
 interface FormFields {
     name: string;
     Username: string;
@@ -18,6 +18,7 @@ interface FormFields {
 
 export default function FormSignUp() {
     const navigate = useNavigate();
+    const getToken = getAuthToken();
     const { control, handleSubmit,  getValues, formState: { errors, isSubmitting }, register} = useForm<FormFields>({
         defaultValues: {
             name: "",
@@ -25,30 +26,43 @@ export default function FormSignUp() {
             Email: "",
             PhoneNumber: "",
             Password: "",
-            role: "USER",
         }
     })
- const onSubmit: SubmitHandler<FormFields> = async (data) => {
+
+const onSubmit: SubmitHandler<FormFields> = async (data) => {
     try {
-      const response = await axios.post('http://localhost:8080/auth/register');
-      console.log(data);
-      if(response.status === 200){
-        navigate('/app/dashboard')
-      } else {
-        return (<Feedback type="invalid">Invalid email or password</Feedback>)
-      }
+        const response = await request('post', '/auth/register', data);
+        console.log(response.data);
+        if (response.status === 200) {
+            return (
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'User created successfully!',
+                    icon: 'success',
+                    confirmButtonText: 'Go to user page',
+                    didClose: () => {
+                        navigate('/app/home');
+                    }
+                })
+            )
+        }
     } catch (error) {
-      console.error(error);
+        Swal.fire({
+                    title: 'Try again!',
+                    text: 'User was not created because the email or username have already been taken!',
+                    icon: 'warning',
+                    confirmButtonText: 'Try again',
+                })
+        console.error(error);
     }
-   
-  }
+}
     return (
         <>
             <Form className='w-11/12' onSubmit={handleSubmit(onSubmit)} noValidate>
                 <FormGroup className="mt-3">
                     <FormLabel className='mt-3'>Full name: </FormLabel>
                     <Controller
-                        name='fullName'
+                        name='name'
                         control={control}
                         rules={{
                             required: "Please enter your full name.",
@@ -60,22 +74,22 @@ export default function FormSignUp() {
                         render={({field}) => (
                             <FormControl
                             {...field}
-                            isInvalid={errors.fullName}
+                            isInvalid={errors.name}
                             type="text"
                             placeholder="Enter your full name:"
                     />
                         )}
                     />
-                    {errors.fullName && (
+                    {errors.name && (
                         <Feedback type="invalid">
-                            {errors.fullName.message}
+                            {errors.name.message}
                         </Feedback>
                     )}
                     
                     
                     <FormLabel className='mt-3'>Choose a Username: </FormLabel>
                     <Controller
-                        name="username"
+                        name="Username"
                         control={control}
                         rules={{
                             required: "Please enter a username.", pattern: {
@@ -86,21 +100,21 @@ export default function FormSignUp() {
                        render={({ field }) => (
                 <FormControl
                     {...field}
-                    isInvalid={errors.username}
+                    isInvalid={errors.Username}
                     type="text"
                     placeholder="Enter username:"
                 />
             )}
         />
 
-                    {errors.username && (
+                    {errors.Username && (
                         <Feedback type="invalid">
-                            {errors.username.message}
+                            {errors.Username.message}
                         </Feedback>
                     )}
                     <FormLabel className='mt-3'>E-mail Address: </FormLabel>
                     <Controller
-                        name="email"
+                        name="Email"
                         control={control}
                         rules={{
                             required: "Please enter a email address.",
@@ -112,18 +126,18 @@ export default function FormSignUp() {
                         render={({ field }) => (
                             <FormControl
                                 {...field}
-                                isInvalid={errors.email}
+                                isInvalid={errors.Email}
                                 type="email"
                                 placeholder="Enter email:"
                             />
                         )}
                     />
-                    {errors.email && (
-                        <Feedback type='invalid'>{errors.email.message}</Feedback>
+                    {errors.Email && (
+                        <Feedback type='invalid'>{errors.Email.message}</Feedback>
                     )}
                     <FormLabel className='mt-3'>Phone Number: </FormLabel>
                     <Controller 
-                        name="phone"
+                        name="PhoneNumber"
                         control={control}
                         rules={{
                             required: "Please enter a phone number.",
@@ -135,7 +149,7 @@ export default function FormSignUp() {
                         render={({ field }) => (
                             <FormControl
                                 {...field}
-                                isInvalid={errors.phone}
+                                isInvalid={errors.PhoneNumber}
                                 type="tel"
                                 placeholder="(00) 00000-0000"
                                 as={InputMask}
@@ -143,12 +157,12 @@ export default function FormSignUp() {
                             />
                         )}
                     />
-                    {errors.phone && (
-                        <Feedback type='invalid'>{errors.phone.message}</Feedback>
+                    {errors.PhoneNumber && (
+                        <Feedback type='invalid'>{errors.PhoneNumber.message}</Feedback>
                     )}
                     <FormLabel className='mt-3'>Choose a Password: </FormLabel>
                     <Controller
-                        name="password"
+                        name="Password"
                         control={control}
                         rules={{
                             required: "Please enter a password.",
@@ -160,14 +174,14 @@ export default function FormSignUp() {
                         render={({ field }) => (
                             <FormControl
                                 {...field}
-                                isInvalid={errors.password}
+                                isInvalid={errors.Password}
                                 type="password"
                                 placeholder="Enter password:"
                             />
                         )}
                     />
-                    {errors.password && (
-                        <Feedback type="invalid">{errors.password.message}</Feedback>
+                    {errors.Password && (
+                        <Feedback type="invalid">{errors.Password.message}</Feedback>
                     )}
                     <FormLabel className='mt-3'>Confirm your Password: </FormLabel>
                     <Controller 
@@ -175,7 +189,7 @@ export default function FormSignUp() {
                         control={control}
                         rules={{
                             required: "Please confirm your password.",
-                            validate: value => value === getValues("password") || "The passwords do not match."
+                            validate: value => value === getValues("Password") || "The passwords do not match."
                         }}
                         render={({ field }) => (
                             <FormControl

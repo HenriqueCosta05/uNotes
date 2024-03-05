@@ -4,8 +4,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Button } from "react-bootstrap";
 import ButtonTheme from "../../../theme/Bootstrap/Bootstrap";
-import { useEffect, useState } from "react";
-import { getLoginState } from "../../../../services/utils/getLoginState";
 interface HeaderProps {
   logo:  string;
   navlink1?: string;
@@ -15,20 +13,9 @@ interface HeaderProps {
   profileImg?: string;
   buttonLink: string;
 }
-export default function Header({logo, navlink1, navlink2, navlink3, buttontext, profileImg, buttonLink }: HeaderProps) {
+export default function Header({logo, navlink1, navlink2, navlink3, buttontext, buttonLink }: HeaderProps) {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const checkLoginState = async (res) => {
-      res = await getLoginState();
-      if (res === true) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
-    }
-  })
   return (
     <>
       

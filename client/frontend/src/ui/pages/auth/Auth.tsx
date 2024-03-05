@@ -6,7 +6,7 @@ import readJSON from '../../../services/utils/readJSON';
 import ExternalLoginButton from '../../components/auth/ExternalLoginButton';
 import FormSignIn from '../../components/auth/signin/signinform/FormSignIn';
 import FormSignUp from '../../components/auth/signup/signupform/FormSignUp';
-import { Link, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
 type login = {
     isLoginPage: boolean;
@@ -26,18 +26,7 @@ export default function Auth({isLoginPage}: login) {
             setRegisterData(response.authpageinfo.register);
         };
 
-        const loginTransaction = async () => {
-            const response = await axios.get("http://localhost:8080/auth/login");
-            return response.data;
-        }
-
-        const registerTransaction = async () => {
-            const response = await axios.post("http://localhost:8080/auth/register");
-            return response.data;
-        }
         fetchData();
-        loginTransaction();
-        registerTransaction();
     }, []);
 
      const handleLoginClick = () => {
