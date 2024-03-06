@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Banner from '../../components/homepage/banner/Banner'
 import Features from '../../components/homepage/features/Features'
-import Header from '../../components/homepage/header/Header'
+import Header from '../../components/shared/header/Header'
 import Pricing from '../../components/homepage/pricing/Pricing'
 import { Spinner } from 'react-bootstrap'
 import useFetch from '../../../services/hooks/useFetch/UseFetch'

@@ -13,12 +13,7 @@ module.exports = {
       center: true,
       padding: "2rem",
       screens: {
-        '2xl': {'min': '1280px', 'max': '1535px'},
-        'xl': {'min': '1024px', 'max': '1279px'},
-        'lg': {'min': '768px', 'max': '1023px'},
-        'md': {'min': '576px', 'max': '767px'},
-        'sm': {'min': '1px', 'max': '575px'},
-      // => @media (max-width: 639px) { ... }
+        "2xl": "1400px",
       },
     },
     extend: {
@@ -78,4 +73,5 @@ module.exports = {
       },
     },
   },
+  plugins: [require("tailwindcss-animate")],
 }

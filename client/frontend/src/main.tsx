@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Auth from './ui/pages/auth/Auth.tsx';
 import Home from './ui/pages/app/home/Home.tsx';
+import { Provider } from 'react-redux';
+import store from './domain/redux/store.ts';
 
 const router = createBrowserRouter([
   { path: '/', element: <App /> },
@@ -15,6 +17,8 @@ const router = createBrowserRouter([
 ]);
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+      </Provider>
   </React.StrictMode>
 )

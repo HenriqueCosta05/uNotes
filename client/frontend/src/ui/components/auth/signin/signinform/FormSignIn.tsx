@@ -24,7 +24,7 @@ const onSubmit: SubmitHandler<FormFields> = async (data) => {
     try {
         const response = await request('post', '/auth/login', data);
         console.log(response.data);
-        if (response.status === 200) {
+      if (response.status === 200) {
             return (
                 Swal.fire({
                     title: 'Success!',

@@ -9,11 +9,11 @@ interface HeaderProps {
   navlink1?: string;
   navlink2?: string;
   navlink3?: string;
-  buttontext: string;
-  profileImg?: string;
+  buttonText: string;
   buttonLink: string;
+  welcomeText?: string;
 }
-export default function Header({logo, navlink1, navlink2, navlink3, buttontext, buttonLink }: HeaderProps) {
+export default function Header({logo, navlink1, navlink2, navlink3, buttonText, buttonLink, welcomeText }: HeaderProps) {
 
 
   return (
@@ -33,7 +33,7 @@ export default function Header({logo, navlink1, navlink2, navlink3, buttontext, 
               <Nav.Link href={buttonLink} className='nav-link'>
                 <ButtonTheme/>
                 <Button className="flex flex-nowrap btn-primary btn mt-1.5 ml-24">
-                  <a href={buttonLink} className="font-bold text-neutral-300 text-2xl no-underline flex mr-3">{buttontext}</a>
+                  <a href={buttonLink} className="font-bold text-neutral-300 text-2xl no-underline flex mr-3">{buttonText}</a>
                   <FaSignInAlt className="text-2xl flex flex-nowrap text-neutral-300" />
                 </Button>
                 <ButtonTheme/>

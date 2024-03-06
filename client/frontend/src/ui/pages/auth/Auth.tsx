@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../../components/homepage/header/Header';
+import Header from '../../components/shared/header/Header';
 import useFetch from '../../../services/hooks/useFetch/UseFetch';
 import { Button, ButtonGroup, Spinner } from 'react-bootstrap';
 import readJSON from '../../../services/utils/readJSON';
@@ -45,7 +45,7 @@ export default function Auth({isLoginPage}: login) {
             {isPending && <Spinner animation='border' variant='primary' className='p-4 d-flex align-items-center mx-auto my-40'/>}
             {!isPending && (
                 <>
-                    <Header logo='uNotes' buttontext='Back to home' buttonLink='/' />
+                    <Header logo='uNotes' buttontext='Back to home' buttonLink='/'  />
                     {isLogin ? (
                         <>
                              <div className="flex flex-nowrap mx-auto items-stretch justify-center my-28">
