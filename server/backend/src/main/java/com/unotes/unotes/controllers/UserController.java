@@ -1,10 +1,10 @@
 package com.unotes.unotes.controllers;
 
 import com.unotes.unotes.models.User;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @GetMapping("/my-account")
-    public User getCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof User) {
-            return (User) authentication.getPrincipal();
-        } else {
-            // Usuário não autenticado ou não encontrado
-            return null;
+    public ResponseEntity<?> getUserDetails(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("token".equals(cookie.getName())) {
+                    String jsonUserData = cookie.getValue();
+                    return ResponseEntity.ok(jsonUserData);
+                }
+            }
         }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not authenticated");
     }
 }

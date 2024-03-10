@@ -38,7 +38,9 @@ export default function Home() {
 
   return (
     <>
+      
       <Header logo="uNotes" buttonLink={handleButtonClick()} buttonText={handleButtonText()} welcomeText={getWelcomeText()} />
+      <h1 className="text-center font-bold text-purple-900">Welcome, {currentUser.name}!</h1>
           <Searchbar />
           <NoteFilter />
           <NoteList />
