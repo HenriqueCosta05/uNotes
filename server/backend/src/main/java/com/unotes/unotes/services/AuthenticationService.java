@@ -4,6 +4,7 @@ import com.unotes.unotes.models.AuthenticationResponse;
 import com.unotes.unotes.models.Role;
 import com.unotes.unotes.models.User;
 import com.unotes.unotes.repositories.UserRepository;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -39,7 +40,7 @@ public class AuthenticationService {
         return new AuthenticationResponse(token);
     }
 
-    public AuthenticationResponse authenticate(User request) {
+    public AuthenticationResponse authenticate(User request, HttpServletResponse response) {
         User user = repository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -50,6 +51,7 @@ public class AuthenticationService {
 
         // Generate token
         String token = jwtService.generateToken(user);
+        jwtService.addTokenToCookie(token, response);
 
         return new AuthenticationResponse(token);
     }

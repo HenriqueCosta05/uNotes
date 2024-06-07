@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="053985ad-6eea-4297-b550-495fd9e32573" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/frontend/src/domain/redux/user/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client/frontend/src/domain/redux/user/reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/frontend/src/ui/pages/app/home/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/frontend/src/ui/pages/app/home/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/frontend/src/ui/pages/auth/Auth.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/frontend/src/ui/pages/auth/Auth.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/frontend/src/ui/components/homepage/banner/Banner.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/frontend/src/ui/components/homepage/banner/Banner.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/unotes/unotes/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/unotes/unotes/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/unotes/unotes/services/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/unotes/unotes/services/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/unotes/unotes/controllers/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/unotes/unotes/controllers/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/unotes/unotes/services/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/unotes/unotes/services/AuthenticationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +19,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -42,17 +44,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Henri/Documents/Programming/Fatec/3o_Semestre/Tecnicas de Programacao II/aula_03",
+    "last_opened_file_path": "C:/Users/Henri/Documents/Programming/Projects/uNotes/server/backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "configurable.group.editor",
+    "settings.editor.selected.configurable": "terminal",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -82,10 +84,16 @@
       <workItem from="1709828850151" duration="216000" />
       <workItem from="1709829112692" duration="213000" />
       <workItem from="1709855115787" duration="42000" />
+      <workItem from="1717779750769" duration="135000" />
+      <workItem from="1717781644880" duration="823000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

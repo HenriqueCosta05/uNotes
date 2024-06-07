@@ -1,8 +1,5 @@
-import './index.css'
-import Home from './ui/pages/home/Home'
+import "./index.css";
 
 export default function App() {
-  return (
-    <Home/>
-  )
+  return <h1 className="font-bold text-purple-500">Hello World</h1>;
 }
